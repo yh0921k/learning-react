@@ -1,8 +1,18 @@
-const MyComponent = (props) => {
+// const MyComponent = (props) => {
+//   const { name, children } = props;
+//   return (
+//     <div>
+//       Hello {name} <br />
+//       Hello {children}
+//     </div>
+//   );
+// };
+
+const MyComponent = ({ name, children }) => {
   return (
     <div>
-      Hello {props.name} <br />
-      Hello {props.children}
+      Hello {name} <br />
+      Hello {children}
     </div>
   );
 };
