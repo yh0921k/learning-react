@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
+import MyComponent from './functional-component/MyComponent';
 
-class App extends Component {
-  render() {
-    const name = 'react';
-    return <>{name}</>;
-  }
-}
+const App = () => {
+  return <MyComponent />;
+};
 
 export default App;
