@@ -1,12 +1,4 @@
-// const MyComponent = (props) => {
-//   const { name, children } = props;
-//   return (
-//     <div>
-//       Hello {name} <br />
-//       Hello {children}
-//     </div>
-//   );
-// };
+import PropTypes from 'prop-types';
 
 const MyComponent = ({ name, children }) => {
   return (
@@ -19,6 +11,10 @@ const MyComponent = ({ name, children }) => {
 
 MyComponent.defaultProps = {
   name: 'JAVA',
+};
+
+MyComponent.propTypes = {
+  name: PropTypes.string,
 };
 
 export default MyComponent;
