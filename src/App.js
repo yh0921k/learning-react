@@ -1,8 +1,10 @@
 function App() {
   const name = "React"
+  const number = 0
   return (
     <> 
-      <h1>{name === 'React' ? 'This is React' : 'Not React'}</h1>
+      {name === 'React' && <h1>This is React</h1>}
+      {number && <div>React</div>}
       <h2>Hello JavaScript!</h2>
     </>
   );
