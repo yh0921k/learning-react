@@ -1,12 +1,8 @@
 import React from 'react';
-import MyComponent from './functional-component/MyComponent';
+import Counter from './class-component/Counter';
 
 const App = () => {
-  return (
-    <MyComponent name="React" favoriteNumber={1}>
-      React
-    </MyComponent>
-  );
+  return <Counter />;
 };
 
 export default App;
