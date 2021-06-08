@@ -1,8 +1,7 @@
 import React from 'react';
-import Counter from './class-component/Counter';
-
+import Say from './functional-component/Say';
 const App = () => {
-  return <Counter />;
+  return <Say />;
 };
 
 export default App;
