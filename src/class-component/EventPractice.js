@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class EventPractice extends Component {
+  state = {
+    message: '',
+  };
+
   render() {
     return (
       <div>
@@ -10,10 +14,17 @@ class EventPractice extends Component {
           name={'message'}
           placeholder={'Input Anything'}
           onChange={(e) => {
-            console.log(e);
-            console.log(e.target.value);
+            this.setState({ message: e.target.value });
           }}
         />
+        <button
+          onClick={() => {
+            alert(this.state.message);
+            this.setState({ message: '' });
+          }}
+        >
+          확인
+        </button>
       </div>
     );
   }
