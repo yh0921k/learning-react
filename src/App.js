@@ -1,5 +1,6 @@
 import React from 'react';
-import EventPractice from './class-component/EventPractice';
+import EventPractice from './functional-component/EventPractice';
+
 const App = () => {
   return <EventPractice />;
 };
