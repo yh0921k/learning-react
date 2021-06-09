@@ -5,6 +5,7 @@ class Counter extends Component {
     number: 0,
     fixedNumber: 0,
   };
+
   render() {
     const { number, fixedNumber } = this.state;
     return (

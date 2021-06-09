@@ -20,6 +20,7 @@ class EventPractice extends Component {
       this.handleClick();
     }
   };
+
   render() {
     return (
       <div>
