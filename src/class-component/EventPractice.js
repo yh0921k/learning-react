@@ -5,6 +5,15 @@ class EventPractice extends Component {
     return (
       <div>
         <h1>Practice</h1>
+        <input
+          type={'text'}
+          name={'message'}
+          placeholder={'Input Anything'}
+          onChange={(e) => {
+            console.log(e);
+            console.log(e.target.value);
+          }}
+        />
       </div>
     );
   }
