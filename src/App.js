@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Info from './functional-component/Info';
 
 const App = () => {
+  const [visible, setVisible] = useState(false);
   return (
     <div>
-      <Info />
+      <button onClick={() => setVisible(!visible)}>
+        {visible ? '숨기기' : '보이기'}
+      </button>
+      <hr />
+      {visible && <Info />}
     </div>
   );
 };
