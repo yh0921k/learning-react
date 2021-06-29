@@ -7,7 +7,7 @@ const Info = () => {
   useEffect(() => {
     console.log('Rendering Completed');
     console.log({ name, nickname });
-  });
+  }, []);
 
   const onChangeName = (e) => {
     setName(e.target.value);
