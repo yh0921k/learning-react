@@ -1,10 +1,10 @@
 import React from 'react';
-import Counter from './functional-component/Counter';
+import Info from './functional-component/Info';
 
 const App = () => {
   return (
     <div>
-      <Counter />
+      <Info />
     </div>
   );
 };
