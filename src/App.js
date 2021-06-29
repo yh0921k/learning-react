@@ -1,10 +1,10 @@
 import React from 'react';
-import Info from './functional-component/Info';
+import Average from './functional-component/Average';
 
 const App = () => {
   return (
     <div>
-      <Info />
+      <Average />
     </div>
   );
 };
