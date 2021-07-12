@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import CssModule from './css/CSSModule';
+import StyledComponent from './styled-component/StyledComponent';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <CssModule />
+        <StyledComponent />
       </div>
     );
   }
