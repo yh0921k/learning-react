@@ -1,14 +1,7 @@
-import React, { Component } from 'react';
-import StyledComponent from './styled-component/StyledComponent';
+import React from 'react';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <StyledComponent />
-      </div>
-    );
-  }
-}
+const App = () => {
+  return <div>Todo App</div>;
+};
 
 export default App;
