@@ -9,7 +9,7 @@ const NewsPage = ({ match }) => {
   return (
     <>
       <Categories />
-      <NewsList category={{ category }} />
+      <NewsList category={category} />
     </>
   );
 };
