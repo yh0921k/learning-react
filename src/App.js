@@ -1,16 +1,11 @@
 import React from 'react';
-import ColorBox from './contexts/ColorBox';
-import { ColorProvider } from './contexts/color';
-import SelectColor from './contexts/SelectColor';
+import Counter from './react-redux/components/Counter';
 
 const App = () => {
   return (
-    <ColorProvider value={{ color: 'red' }}>
-      <div>
-        <SelectColor />
-        <ColorBox />
-      </div>
-    </ColorProvider>
+    <div>
+      <Counter number={0} />
+    </div>
   );
 };
 
