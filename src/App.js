@@ -1,16 +1,14 @@
 import React from 'react';
-import ColorBox from './contexts/ColorBox';
-import { ColorProvider } from './contexts/color';
-import SelectColor from './contexts/SelectColor';
+import CounterContainer from './react-redux/containers/CounterContainer';
+import TodosContainer from './react-redux/containers/TodosContainer';
 
 const App = () => {
   return (
-    <ColorProvider value={{ color: 'red' }}>
-      <div>
-        <SelectColor />
-        <ColorBox />
-      </div>
-    </ColorProvider>
+    <div>
+      <CounterContainer />
+      <hr />
+      <TodosContainer />
+    </div>
   );
 };
 
