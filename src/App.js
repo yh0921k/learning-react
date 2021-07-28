@@ -1,9 +1,12 @@
 import React from 'react';
-import NewsPage from './news-viewer/NewsPage';
-import { Route } from 'react-router-dom';
+import ColorBox from './contexts/ColorBox';
 
 const App = () => {
-  return <Route path={'/:category?'} component={NewsPage} />;
+  return (
+    <div>
+      <ColorBox />
+    </div>
+  );
 };
 
 export default App;
