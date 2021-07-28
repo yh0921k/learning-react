@@ -1,11 +1,11 @@
 import React from 'react';
-import Counter from './react-redux/components/Counter';
 import Todos from './react-redux/components/Todos';
+import CounterContainer from './react-redux/containers/CounterContainer';
 
 const App = () => {
   return (
     <div>
-      <Counter number={0} />
+      <CounterContainer />
       <hr />
       <Todos />
     </div>
