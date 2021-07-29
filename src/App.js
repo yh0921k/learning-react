@@ -1,19 +1,27 @@
-import React, { Suspense, useState } from 'react';
+import React, { useState } from 'react';
+import loadable from '@loadable/component';
 
-const SplitMe = React.lazy(() => import('./code-splitting/SplitMe'));
+const SplitMe = loadable(() => import('./code-splitting/SplitMe'), {
+  fallback: <div>loading...</div>,
+});
 
 const App = () => {
   const [visible, setVisible] = useState(false);
+
   const onClick = () => {
     setVisible(true);
   };
 
+  const onMouseOver = () => {
+    SplitMe.preload();
+  };
+
   return (
     <div>
-      <p onClick={onClick}>Hello React</p>
-      <Suspense fallback={<div>loading...</div>}>
-        {visible && <SplitMe />}
-      </Suspense>
+      <p onClick={onClick} onMouseOver={onMouseOver}>
+        Hello React
+      </p>
+      {visible && <SplitMe />}
     </div>
   );
 };
