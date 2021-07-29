@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const App = () => {
-  const onClick = () => {
-    import('./code-splitting/notify').then((result) => result.default());
+class App extends Component {
+  state = {
+    SplitMe: null,
   };
 
-  return (
-    <div className={'App'}>
-      <header className={'App-header'}>
-        <p onClick={onClick}>Hello React</p>
-      </header>
-    </div>
-  );
-};
+  handleClick = async () => {
+    const loadedModule = await import('./code-splitting/SplitMe');
+    this.setState({
+      SplitMe: loadedModule.default,
+    });
+  };
+
+  render() {
+    const { SplitMe } = this.state;
+    return (
+      <div>
+        <p onClick={this.handleClick}>Hello React</p>
+        {SplitMe && <SplitMe />}
+      </div>
+    );
+  }
+}
 
 export default App;
