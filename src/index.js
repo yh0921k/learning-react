@@ -6,9 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './redux-middleware/modules';
-import loggerMiddleware from './redux-middleware/lib/loggerMiddleware';
+import { createLogger } from 'redux-logger/src';
 
-const store = createStore(rootReducer, applyMiddleware(loggerMiddleware));
+const logger = createLogger();
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 ReactDOM.render(
   <Provider store={store}>
