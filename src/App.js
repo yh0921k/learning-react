@@ -1,27 +1,16 @@
-import React, { useState } from 'react';
-import loadable from '@loadable/component';
-
-const SplitMe = loadable(() => import('./velopert/code-splitting/SplitMe'), {
-  fallback: <div>loading...</div>,
-});
+import React from 'react';
 
 const App = () => {
-  const [visible, setVisible] = useState(false);
-
-  const onClick = () => {
-    setVisible(true);
-  };
-
-  const onMouseOver = () => {
-    SplitMe.preload();
-  };
-
+  const paint = (title, description) => (
+    <>
+      <h1>{title}</h1>
+      <h3>{description}</h3>
+    </>
+  );
   return (
     <div>
-      <p onClick={onClick} onMouseOver={onMouseOver}>
-        Hello React
-      </p>
-      {visible && <SplitMe />}
+      {paint('Good', 'good')}
+      {paint('Bad', 'bad')}
     </div>
   );
 };
