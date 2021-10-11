@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import loadable from '@loadable/component';
 
-const SplitMe = loadable(() => import('./code-splitting/SplitMe'), {
+const SplitMe = loadable(() => import('./velopert/code-splitting/SplitMe'), {
   fallback: <div>loading...</div>,
 });
 
