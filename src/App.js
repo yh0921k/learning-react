@@ -1,22 +1,18 @@
 import React from 'react';
 
 const App = () => {
-  const Paint = ({ title, description, children }) => (
-    <>
-      <h1>{title}</h1>
-      <h3>{description}</h3>
-      {children}
-    </>
-  );
+  const Text = ({ text }) => {
+    if (text.charAt(0) === text.charAt(0).toUpperCase()) {
+      return <h1>{text}</h1>;
+    } else {
+      return <h3>{text}</h3>;
+    }
+  };
   return (
-    <div>
-      <Paint title={'Good'} description={'good'}>
-        <h1>Children</h1>
-      </Paint>
-      <Paint title={'Bad'} description={'bad'}>
-        Hello React
-      </Paint>
-    </div>
+    <>
+      <Text text={'Text'} />
+      <Text text={'text'} />
+    </>
   );
 };
 
