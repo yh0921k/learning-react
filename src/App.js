@@ -1,13 +1,14 @@
 import React from 'react';
 
 const App = () => {
-  const Number = ({ number }) => {
-    return number % 2 === 0 ? <h1>{number}</h1> : <h3>{number}</h3>;
+  const Number = ({ number, selected }) => {
+    return selected ? <h1>{number}</h1> : <h3>{number}</h3>;
   };
   return (
     <>
-      <Number number={2} />
-      <Number number={1} />
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => (
+        <Number number={number} selected={number === 3} />
+      ))}
     </>
   );
 };
