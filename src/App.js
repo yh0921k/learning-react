@@ -1,17 +1,13 @@
 import React from 'react';
 
 const App = () => {
-  const Text = ({ text }) => {
-    if (text.charAt(0) === text.charAt(0).toUpperCase()) {
-      return <h1>{text}</h1>;
-    } else {
-      return <h3>{text}</h3>;
-    }
+  const Number = ({ number }) => {
+    return number % 2 === 0 ? <h1>{number}</h1> : <h3>{number}</h3>;
   };
   return (
     <>
-      <Text text={'Text'} />
-      <Text text={'text'} />
+      <Number number={2} />
+      <Number number={1} />
     </>
   );
 };
