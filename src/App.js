@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
-const App = () => {
-  console.log('render');
-  const [keyword, setKeyword] = useState(() => {
-    console.log('initializer');
-    return window.localStorage.getItem('keyword');
+function useLocalStorage(itemName, value = '') {
+  const [state, setState] = useState(() => {
+    return window.localStorage.getItem(itemName) || value;
   });
-  const [result, setResult] = useState('');
-  const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    console.log('effect');
-    window.localStorage.setItem('keyword', keyword);
-  }, [keyword, typing]);
+    window.localStorage.setItem(itemName, state);
+  }, [state]);
+
+  return [state, setState];
+}
+
+const App = () => {
+  const [keyword, setKeyword] = useLocalStorage('keyword');
+  const [result, setResult] = useLocalStorage('result');
+  const [typing, setTyping] = useLocalStorage('typing', false);
 
   function handleChange(event) {
     setKeyword(event.target.value);
     setTyping(true);
   }
+
   function handleClick() {
     setTyping(false);
     setResult(`We find results of ${keyword}`);
