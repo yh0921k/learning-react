@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const App = () => {
-  const Number = ({ number, selected }) => {
-    return selected ? <h1>{number}</h1> : <h3>{number}</h3>;
-  };
+  const [keyword, setKeyword] = useState('');
+  const [result, setResult] = useState('');
+  const [typing, setTyping] = useState(false);
+  function handleChange(event) {
+    setKeyword(event.target.value);
+    setTyping(true);
+  }
+  function handleClick() {
+    setTyping(false);
+    setResult(`We find results of ${keyword}`);
+  }
+
   return (
     <>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => (
-        <Number number={number} selected={number === 3} />
-      ))}
+      <input onChange={handleChange} />
+      <button onClick={handleClick}>Search</button>
+      <p>{typing ? `Looking for...${keyword}` : result}</p>
     </>
   );
 };
