@@ -1,37 +1,37 @@
 import React, { useEffect, useState } from 'react';
 
-function useLocalStorage(itemName, value = '') {
-  const [state, setState] = useState(() => {
-    return window.localStorage.getItem(itemName) || value;
+const App = () => {
+  console.log('App render Start');
+  const [show, setShow] = useState(() => {
+    console.log('App useState()');
+    return false;
   });
 
   useEffect(() => {
-    window.localStorage.setItem(itemName, state);
-  }, [state]);
+    console.log('App useEffect() No deps');
+  });
 
-  return [state, setState];
-}
+  useEffect(() => {
+    console.log('App useEffect() Empty deps ');
+  }, []);
 
-const App = () => {
-  const [keyword, setKeyword] = useLocalStorage('keyword');
-  const [result, setResult] = useLocalStorage('result');
-  const [typing, setTyping] = useLocalStorage('typing', false);
+  useEffect(() => {
+    console.log('App useEffect() [show] ');
+  }, [show]);
 
-  function handleChange(event) {
-    setKeyword(event.target.value);
-    setTyping(true);
-  }
-
-  function handleClick() {
-    setTyping(false);
-    setResult(`We find results of ${keyword}`);
-  }
-
+  const handleClick = () => {
+    setShow((prev) => !prev);
+  };
   return (
     <>
-      <input onChange={handleChange} value={keyword} />
       <button onClick={handleClick}>Search</button>
-      <p>{typing ? `Looking for...${keyword}` : result}</p>
+      {show ? (
+        <>
+          <input />
+          <p></p>
+        </>
+      ) : null}
+      {console.log('App render End')}
     </>
   );
 };
