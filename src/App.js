@@ -1,87 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import './fastcampus/css/button.css';
 
-const Child = () => {
-  console.log('   Child render Start');
-  const [text, setText] = useState(() => {
-    console.log('   Child useState()');
-    return '';
-  });
-
-  useEffect(() => {
-    console.log('   Child useEffect() No deps');
-
-    return () => {
-      console.log('   Child useEffect() No deps Clean Up');
-    };
-  });
-
-  useEffect(() => {
-    console.log('   Child useEffect() Empty deps ');
-
-    return () => {
-      console.log('   Child useEffect() Empty deps Clean Up');
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log('   Child useEffect() [text] ');
-
-    return () => {
-      console.log('   Child useEffect() [text] Clean Up');
-    };
-  }, [text]);
-
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
-  const element = (
-    <>
-      <input onChange={handleChange} />
-      <p>{text}</p>
-    </>
-  );
-  console.log('   Child render End');
-  return element;
-};
 const App = () => {
-  console.log('App render Start');
-  const [show, setShow] = useState(() => {
-    console.log('App useState()');
-    return false;
-  });
-
-  useEffect(() => {
-    console.log('App useEffect() No deps');
-
-    return () => {
-      console.log('App useEffect() No deps Clean Up');
-    };
-  });
-
-  useEffect(() => {
-    console.log('App useEffect() Empty deps ');
-
-    return () => {
-      console.log('App useEffect() Empty deps Clean Up');
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log('App useEffect() [show] ');
-
-    return () => {
-      console.log('App useEffect() [show] Clean Up');
-    };
-  }, [show]);
-
-  const handleClick = () => {
-    setShow((prev) => !prev);
+  const Button = ({ className = '', style, color, ...rest }) => {
+    return (
+      <button
+        className={`button ${className}`}
+        style={{ borderRadius: 8, backgroundColor: color, ...style }}
+        {...rest}
+      ></button>
+    );
   };
-  console.log('App render End');
   return (
     <>
-      <button onClick={handleClick}>Search</button>
-      {show ? <Child /> : null}
+      <Button style={{ borderRadius: '50%' }}>Green</Button>
+      <Button color="blue">Blue</Button>
+      <Button color="red">Red</Button>
+      <Button color="gray">Gray</Button>
+      <Button color="black">Black</Button>
     </>
   );
 };
