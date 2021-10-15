@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import './fastcampus/css/button.css';
+import React, { useEffect, useRef, useState } from 'react';
 
 const App = () => {
-  const Button = ({ className = '', style, color, ...rest }) => {
-    return (
-      <button
-        className={`button ${className}`}
-        style={{ borderRadius: 8, backgroundColor: color, ...style }}
-        {...rest}
-      ></button>
-    );
-  };
+  const inputRef = useRef();
+  const divRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+
+    setTimeout(() => {
+      divRef.current.style.backgroundColor = 'pink';
+    }, 1000);
+  }, []);
   return (
     <>
-      <Button style={{ borderRadius: '50%' }}>Green</Button>
-      <Button color="blue">Blue</Button>
-      <Button color="red">Red</Button>
-      <Button color="gray">Gray</Button>
-      <Button color="black">Black</Button>
+      <input ref={inputRef} />
+      <div
+        ref={divRef}
+        style={{ height: 100, width: 100, backgroundColor: 'brown' }}
+      />
     </>
   );
 };
