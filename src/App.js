@@ -1,54 +1,39 @@
 import React, { useEffect, useState } from 'react';
 
-const Id = ({ handleIdChange }) => {
-  return (
-    <>
-      <label htmlFor={'id'}>ID: </label>
-      <input onChange={handleIdChange} />
-    </>
-  );
-};
-
-const Password = ({ handlePasswordChange }) => {
-  return (
-    <>
-      <label htmlFor={'password'}>PW: </label>
-      <input onChange={handlePasswordChange} type={'password'} />
-    </>
-  );
-};
-
 const App = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    fetch(
+      'https://raw.githubusercontent.co/techoi/raw-data-api/main/simple-api.json',
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        setData(myJson.data);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  }, []);
 
-  const handleIdChange = (event) => {
-    setId(event.target.value);
-    console.log(id);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    console.log(password);
-  };
-
-  const handleLoginClick = () => {
-    console.log(`ID : ${id}, PW : ${password}`);
-  };
+  if (error != null) {
+    return <p>{error}</p>;
+  }
+  if (data == null) {
+    return <p>Loading...</p>;
+  }
   return (
-    <>
-      <form>
-        <Id handleIdChange={handleIdChange} />
-        <br />
-        <Password handlePasswordChange={handlePasswordChange} />
-        <button
-          disabled={id.length > 0 && password.length > 0 ? false : true}
-          onClick={handleLoginClick}
-        >
-          Login
-        </button>
-      </form>
-    </>
+    <div>
+      <p>People</p>
+      {data.people.map((person) => (
+        <div>
+          <span>name: {person.name} </span>
+          <span>age : {person.age}</span>
+        </div>
+      ))}
+    </div>
   );
 };
 
