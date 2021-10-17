@@ -1,29 +1,49 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const App = () => {
+  const [message, setMessage] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.dir(event.target.elements);
-    alert(
-      `${event.target.elements.fname.value} ${event.target.elements.cars.value}`,
-    );
+    alert(phoneNumber);
   };
 
+  const handleChange = (event) => {
+    if (event.target.value.startsWith(0)) {
+      setMessage('Phone Number is valid');
+      setPhoneNumber(event.target.value);
+    } else if (event.target.value.length === 0) {
+      setPhoneNumber('');
+      setMessage('');
+    } else {
+      setPhoneNumber('');
+      setMessage('Phone Number should starts with 0');
+    }
+  };
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="fname">First name:</label>
+        <label htmlFor={'phone'}>Phone Number: </label>
         <br />
-        <input type="text" id="fname" name="fname" defaultValue="John" />
+        <input
+          id={'phone'}
+          name={'phone'}
+          onChange={handleChange}
+          value={phoneNumber}
+        />
+        <p>{message}</p>
         <br />
-        <label htmlFor="cars">Choose a car:</label>
-        <select id="cars" name="cars">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="fiat">Fiat</option>
-          <option value="audi">Audi</option>
-        </select>
-        <input type="submit" defaultValue="Submit" />
+        <br />
+        <button
+          type={'submit'}
+          disabled={
+            phoneNumber.length === 0 || message !== 'Phone Number is valid'
+          }
+        >
+          Submit
+        </button>
+        <p>{phoneNumber}</p>
       </form>
     </>
   );
