@@ -1,44 +1,47 @@
-import React, { Component, useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
-class ErrorBoundary extends Component {
-  state = {
-    error: null,
-  };
-  static getDerivedStateFromError(error) {
-    return { error };
-  }
-
-  render() {
-    const { error } = this.state;
-    if (error) {
-      // return <p>There is some error</p>
-      // return this.props.fallback;
-      return <this.props.fallback error={error} />;
-    }
-    return this.props.children;
-  }
-}
-
-const Fallback = ({ error }) => {
-  alert(error.message);
-  return <p>THERE is some ERROR...</p>;
-};
-
-const Child = () => {
-  throw new Error('Something Wrong...');
-  return <p>Child</p>;
-};
+const todos = [
+  {
+    id: 1,
+    value: 'Wash dished',
+  },
+  {
+    id: 2,
+    value: 'Clean the bed',
+  },
+  {
+    id: 3,
+    value: 'Running',
+  },
+  {
+    id: 4,
+    value: 'Learning',
+  },
+];
 
 const App = () => {
+  const [items, setItems] = useState(todos);
+
+  const handleDoneClick = (todo) => {
+    setItems((items) => items.filter((item) => item !== todo));
+  };
+
+  const handleRestoreClick = () => {
+    setItems((items) => [
+      ...items,
+      todos.find((item) => !items.includes(item)),
+    ]);
+  };
+
   return (
     <>
-      <p>App</p>
-      <ErrorBoundary /* fallback={<p>There is some Error</p>} */
-        /* fallback={<Fallback />} */
-        fallback={Fallback}
-      >
-        <Child />
-      </ErrorBoundary>
+      {items.map((todo) => (
+        <div key={todo.id}>
+          <span>{todo.value}</span>
+          <button onClick={() => handleDoneClick(todo)}>Done</button>
+        </div>
+      ))}
+      <button onClick={handleRestoreClick}>Restore</button>
     </>
   );
 };
