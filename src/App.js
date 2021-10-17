@@ -1,50 +1,44 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Component, useEffect, useRef, useState } from 'react';
+
+class ErrorBoundary extends Component {
+  state = {
+    error: null,
+  };
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+
+  render() {
+    const { error } = this.state;
+    if (error) {
+      // return <p>There is some error</p>
+      // return this.props.fallback;
+      return <this.props.fallback error={error} />;
+    }
+    return this.props.children;
+  }
+}
+
+const Fallback = ({ error }) => {
+  alert(error.message);
+  return <p>THERE is some ERROR...</p>;
+};
+
+const Child = () => {
+  throw new Error('Something Wrong...');
+  return <p>Child</p>;
+};
 
 const App = () => {
-  const [message, setMessage] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(phoneNumber);
-  };
-
-  const handleChange = (event) => {
-    if (event.target.value.startsWith(0)) {
-      setMessage('Phone Number is valid');
-      setPhoneNumber(event.target.value);
-    } else if (event.target.value.length === 0) {
-      setPhoneNumber('');
-      setMessage('');
-    } else {
-      setPhoneNumber('');
-      setMessage('Phone Number should starts with 0');
-    }
-  };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor={'phone'}>Phone Number: </label>
-        <br />
-        <input
-          id={'phone'}
-          name={'phone'}
-          onChange={handleChange}
-          value={phoneNumber}
-        />
-        <p>{message}</p>
-        <br />
-        <br />
-        <button
-          type={'submit'}
-          disabled={
-            phoneNumber.length === 0 || message !== 'Phone Number is valid'
-          }
-        >
-          Submit
-        </button>
-        <p>{phoneNumber}</p>
-      </form>
+      <p>App</p>
+      <ErrorBoundary /* fallback={<p>There is some Error</p>} */
+        /* fallback={<Fallback />} */
+        fallback={Fallback}
+      >
+        <Child />
+      </ErrorBoundary>
     </>
   );
 };
