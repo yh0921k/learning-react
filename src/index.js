@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer, { rootSaga } from './redux-middleware/modules';
+import rootReducer, { rootSaga } from './velopert/redux-middleware/modules';
 import { createLogger } from 'redux-logger/src';
 import ReduxThunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';

@@ -1,27 +1,38 @@
-import React, { useState } from 'react';
-import loadable from '@loadable/component';
-
-const SplitMe = loadable(() => import('./code-splitting/SplitMe'), {
-  fallback: <div>loading...</div>,
-});
+import React, { useEffect, useState } from 'react';
 
 const App = () => {
-  const [visible, setVisible] = useState(false);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    fetch(
+      'https://raw.githubusercontent.co/techoi/raw-data-api/main/simple-api.json',
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        setData(myJson.data);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  }, []);
 
-  const onClick = () => {
-    setVisible(true);
-  };
-
-  const onMouseOver = () => {
-    SplitMe.preload();
-  };
-
+  if (error != null) {
+    return <p>{error}</p>;
+  }
+  if (data == null) {
+    return <p>Loading...</p>;
+  }
   return (
     <div>
-      <p onClick={onClick} onMouseOver={onMouseOver}>
-        Hello React
-      </p>
-      {visible && <SplitMe />}
+      <p>People</p>
+      {data.people.map((person) => (
+        <div>
+          <span>name: {person.name} </span>
+          <span>age : {person.age}</span>
+        </div>
+      ))}
     </div>
   );
 };
