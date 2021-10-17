@@ -1,114 +1,53 @@
 import React, { useEffect, useState } from 'react';
 
-const todos = [
-  [
-    {
-      id: 1,
-      value: 'Wash dished',
-    },
-    {
-      id: 2,
-      value: 'Clean the bed',
-    },
-    {
-      id: 3,
-      value: 'Running',
-    },
-    {
-      id: 4,
-      value: 'Learning',
-    },
-  ],
-  [
-    {
-      id: 4,
-      value: 'Learning',
-    },
-    {
-      id: 1,
-      value: 'Wash dished',
-    },
-    {
-      id: 2,
-      value: 'Clean the bed',
-    },
-    {
-      id: 3,
-      value: 'Running',
-    },
-  ],
-  [
-    {
-      id: 3,
-      value: 'Running',
-    },
-    {
-      id: 1,
-      value: 'Wash dished',
-    },
-    {
-      id: 2,
-      value: 'Clean the bed',
-    },
-    {
-      id: 4,
-      value: 'Learning',
-    },
-  ],
-  [
-    {
-      id: 2,
-      value: 'Clean the bed',
-    },
-    {
-      id: 1,
-      value: 'Wash dished',
-    },
-    {
-      id: 3,
-      value: 'Running',
-    },
-    {
-      id: 4,
-      value: 'Learning',
-    },
-  ],
-];
-
-const App = () => {
-  const [items, setItems] = useState(todos[0]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const random = Math.floor(Math.random() * 3);
-      setItems(todos[random]);
-
-      return () => {
-        clearInterval(interval);
-      };
-    }, 1000);
-  }, []);
-  const handleDoneClick = (todo) => {
-    setItems((items) => items.filter((item) => item !== todo));
-  };
-
-  const handleRestoreClick = () => {
-    setItems((items) => [
-      ...items,
-      todos.find((item) => !items.includes(item)),
-    ]);
-  };
-
+const Id = ({ handleIdChange }) => {
   return (
     <>
-      {items.map((todo) => (
-        <div key={todo.id}>
-          <button onClick={() => handleDoneClick(todo)}>{todo.value}</button>
-        </div>
-      ))}
-      <br />
-      <br />
-      <button onClick={handleRestoreClick}>Restore</button>
+      <label htmlFor={'id'}>ID: </label>
+      <input onChange={handleIdChange} />
+    </>
+  );
+};
+
+const Password = ({ handlePasswordChange }) => {
+  return (
+    <>
+      <label htmlFor={'password'}>PW: </label>
+      <input onChange={handlePasswordChange} type={'password'} />
+    </>
+  );
+};
+
+const App = () => {
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleIdChange = (event) => {
+    setId(event.target.value);
+    console.log(id);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    console.log(password);
+  };
+
+  const handleLoginClick = () => {
+    console.log(`ID : ${id}, PW : ${password}`);
+  };
+  return (
+    <>
+      <form>
+        <Id handleIdChange={handleIdChange} />
+        <br />
+        <Password handlePasswordChange={handlePasswordChange} />
+        <button
+          disabled={id.length > 0 && password.length > 0 ? false : true}
+          onClick={handleLoginClick}
+        >
+          Login
+        </button>
+      </form>
     </>
   );
 };
