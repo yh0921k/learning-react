@@ -1,12 +1,10 @@
 import React from 'react';
-import FunctionalComponent from './fastcampus/components/2-5State/FunctionalComponent';
-import ClassComponent from './fastcampus/components/2-6LifeCycle/ClassComponent';
+import Event from './fastcampus/components/2-7Event/Event';
 
 const App = () => {
   return (
     <>
-      <ClassComponent />
-      <FunctionalComponent />
+      <Event />
     </>
   );
 };
