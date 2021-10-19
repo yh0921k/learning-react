@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Composition from './fastcampus/components/2-4Props/Composition';
-import Extraction from './fastcampus/components/2-4Props/Extraction';
+import React from 'react';
+import ClassComponent from './fastcampus/components/2-5State/ClassComponent';
+import FunctionalComponent from './fastcampus/components/2-5State/FunctionalComponent';
 
 const App = () => {
   return (
     <>
-      <Extraction />
-      <Composition />
+      <ClassComponent />
+      <FunctionalComponent />
     </>
   );
 };
