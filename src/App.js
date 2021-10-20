@@ -1,10 +1,10 @@
 import React from 'react';
-import Condition from './fastcampus/components/2-8ConditionalRendering/condition';
+import List from './fastcampus/components/2-9List/List';
 
 const App = () => {
   return (
     <>
-      <Condition />
+      <List />
     </>
   );
 };
