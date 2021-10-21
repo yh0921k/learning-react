@@ -1,10 +1,14 @@
 import React from 'react';
-import List from './fastcampus/components/2-9List/List';
+import UncontrolledComponent from './fastcampus/components/2-10Form/UncontrolledComponent';
+import ControlledComponent from './fastcampus/components/2-10Form/ControlledComponent';
 
 const App = () => {
   return (
     <>
-      <List />
+      <ControlledComponent />
+      <br />
+      <br />
+      <UncontrolledComponent />
     </>
   );
 };
